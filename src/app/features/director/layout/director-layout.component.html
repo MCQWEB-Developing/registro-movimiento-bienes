@@ -1,0 +1,76 @@
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <div class="logo">
+            <span>📦</span> Sistema
+        </div>
+    </div>
+
+    <nav class="nav-links">
+        <a routerLink="/director" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+            <span>📊</span> Dashboard
+        </a>
+        <a routerLink="/director/inventory" routerLinkActive="active" class="nav-item">
+            <span>📝</span> Registro de Entradas
+        </a>
+        <a routerLink="/director/inventory-exits" routerLinkActive="active" class="nav-item">
+            <span>📤</span> Registro de Salidas
+        </a>
+        <a routerLink="/director/requests" routerLinkActive="active" class="nav-item">
+            <span>📨</span> Gestionar Solicitudes
+        </a>
+    </nav>
+
+    <div class="sidebar-footer" style="padding: 1rem; border-top: 1px solid #f3f4f6;">
+        <small style="color: #9ca3af;">v1.0.0</small>
+    </div>
+</aside>
+
+<div class="main-content">
+    <header class="top-bar">
+        <h2 class="page-title">Dirección</h2>
+
+        <div class="header-actions">
+            <!-- NOTIFICATION BELL -->
+            <div class="notification-wrapper">
+                <button class="btn-icon bell-btn" (click)="toggleNotifications()">
+                    🔔
+                    @if (pendingCount() > 0) {
+                    <span class="badge">{{ pendingCount() }}</span>
+                    }
+                </button>
+
+                @if (showNotifications()) {
+                <div class="notification-dropdown">
+                    <div class="dropdown-header">
+                        <strong>Solicitudes Pendientes</strong>
+                    </div>
+                    <div class="dropdown-body">
+                        @if (pendingCount() > 0) {
+                        <div class="notification-item" (click)="goToRequests()">
+                            <span class="item-icon">📝</span>
+                            <div class="item-content">
+                                <p>Tienes <strong>{{ pendingCount() }}</strong> nuevas solicitudes por revisar.</p>
+                                <small>Haz clic para verlas</small>
+                            </div>
+                        </div>
+                        } @else {
+                        <div class="empty-state">
+                            <small>No hay notificaciones nuevas</small>
+                        </div>
+                        }
+                    </div>
+                </div>
+                }
+            </div>
+
+            <div class="user-menu">
+                <span style="font-weight: 500; font-size: 0.9rem;">Director</span>
+                <button (click)="logout()" class="btn-logout">Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-area">
+        <router-outlet></router-outlet>
+    </main>
+</div>

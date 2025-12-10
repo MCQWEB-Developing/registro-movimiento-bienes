@@ -1,0 +1,38 @@
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <div class="logo">
+            <span>📦</span> Sistema
+        </div>
+    </div>
+
+    <nav class="nav-links">
+        <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+            <span>📊</span> Dashboard
+        </a>
+        <a routerLink="/admin/users" routerLinkActive="active" class="nav-item">
+            <span>👥</span> Usuarios
+        </a>
+        <a routerLink="/admin/settings" routerLinkActive="active" class="nav-item">
+            <span>⚙️</span> Configuración
+        </a>
+    </nav>
+
+    <div class="sidebar-footer" style="padding: 1rem; border-top: 1px solid #f3f4f6;">
+        <small style="color: #9ca3af;">v1.0.0</small>
+    </div>
+</aside>
+
+<div class="main-content">
+    <header class="top-bar">
+        <h2 class="page-title">Administración</h2>
+
+        <div class="user-menu">
+            <span style="font-weight: 500; font-size: 0.9rem;">Admin</span>
+            <button (click)="logout()" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <main class="content-area">
+        <router-outlet></router-outlet>
+    </main>
+</div>
